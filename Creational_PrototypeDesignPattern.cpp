@@ -1,6 +1,8 @@
 
 /* Example of Proto type Design Pettern */
-/* As per my understanding we can achive same functionality using copy constructor */
+/* As per my understanding we can achive same functionality using copy constructor 
+The prototype design pattern is a design pattern that is used to instantiate a class by copying, or cloning, the properties 
+of an existing object. The new object is an exact copy of the prototype but permits modification without altering the original.*/
 #include <iostream>
 
 using namespace std;
