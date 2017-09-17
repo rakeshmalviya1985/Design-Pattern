@@ -1,40 +1,36 @@
 #include <iostream>
 
 using namespace std;
+/* enum is used as  indicator to decide which cake you want*/
 enum cakeType{choc,vanila};
+/* Interface for cake recipe */
 class Cake
 {
     public:
-    virtual void Setcream() = 0;
-    virtual void bread() = 0;
+    virtual void recipe() = 0;
 };
 
+/* implemented class for chocolate class which will give the recipe for chocoloate cake */
 class ChoclateCake:public Cake
 {
     public:
-    void Setcream()
+    void recipe()
     {
         cout<<"choclate"<<endl;
     }
-    void bread()
-    {
-        cout<<"bread"<<endl;
-    }
 };
-
+/* Implemented class for Vanila class which will give the recipe for Vanila cake */
 class VanilaCake:public Cake
 {
     public:
-    void Setcream()
+    void recipe()
     {
         cout<<"Vanila"<<endl;
     }
-    void bread()
-    {
-        cout<<"bread1"<<endl;
-    }
+
 };
 
+/* factory which will return object of concrete classes of cake interface */
 class factory
 {
     private:
@@ -53,7 +49,7 @@ class factory
            {
                  obj = new ChoclateCake();
            }
-           else 
+           else if (type == vanila)
            {
                  obj =  new VanilaCake();
            }
@@ -62,12 +58,15 @@ class factory
     }
 };
 
+/* Client */
 int main() 
 {
 
 factory Fobj;
-Cake* Cobj = Fobj.getIns(choc);
+Cake* Cobj = Fobj.getIns(vanila);
 
-Cobj->Setcream();
+Cobj->recipe();
+
+return 0;
 
 }
