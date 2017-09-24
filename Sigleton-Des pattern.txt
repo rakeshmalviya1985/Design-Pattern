@@ -1,0 +1,51 @@
+#include <iostream>
+
+using namespace std;
+class MySingleton 
+{
+private:
+        /* So that withing this class only object can create  */
+        MySingleton() 
+        {
+             i = 10;
+            cout<<"Singleton constructor"<<endl;
+        }
+static MySingleton* ptr;    
+    
+public:
+         int i;
+         /* it is static because there is no object available at client side and only one copy of
+         object we want to maintain*/
+         static MySingleton* getInstance()
+         {
+             if(ptr == NULL)
+             {
+                ptr = new MySingleton();
+             }
+
+             return ptr;
+         }
+         
+
+};
+
+ MySingleton* MySingleton::ptr = 0;    
+    
+
+/* We have to initialize  static member outside of class */
+
+//MySingleton* MySingleton::ptr =NULL;
+int main() 
+{
+
+MySingleton* FirstPtr = MySingleton::getInstance();
+cout<<"Default value of i = "<<FirstPtr->i<<endl;
+
+MySingleton* SecondPtr = MySingleton::getInstance();
+FirstPtr->i = 20;
+cout<<"Changed the value of i using 'FirstPtr' however accesing vlue of i by SecondPtr = " 
+    <<SecondPtr->i<<endl;
+    
+return 0;
+
+}
