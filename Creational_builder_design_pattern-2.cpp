@@ -3,7 +3,7 @@
 
 using namespace std;
 
-/*We will use this class to construct small object */
+/*from which you are going to create bog/complex object , We will use this class to construct small object */
 
 class wheel
 {
@@ -14,7 +14,7 @@ class wheel
       numberOfwheel = numbwheel;   
     }
 };
-/* lasrge object  */
+/* Product which you want to create , lasrge object  */
 class truck
 {
     public:
@@ -23,7 +23,7 @@ class truck
     string body;
 };
 
-/* builder which is responsible for building small object  */
+/* builder which is responsible for building small object anf final product will be big  */
 class truckBuilder
 {
     public:
@@ -87,13 +87,10 @@ class vehicleDirector
     truckBuilder* builder;
 
     public:
-        void setBuilder(truckBuilder* newBuilder)
-        {
-            builder = newBuilder;
-        }
 
-        truck* getTruck()
-        {
+
+        truck* getTruck(truckBuilder* newBuilder)
+        {    builder = newBuilder;
             truck* truckObj = new truck();
              truckObj->wheel = builder->getWheel();
              truckObj->engine = builder->getEngine();
@@ -109,10 +106,10 @@ int main()
     vehicleDirector director;
     /* which type of complex object you want */
     bigTruck bigtruckObj;
-    director.setBuilder(&bigtruckObj);
+    //director.setBuilder();
     truck* truckObj; 
     /* getTruck will return complex object of truck  */
-    truckObj = director.getTruck();
+    truckObj = director.getTruck(&bigtruckObj);
     cout<<"number of wheel : "<<truckObj->wheel;
     cout<<endl<<"body type is  : "<<truckObj->body;
 
