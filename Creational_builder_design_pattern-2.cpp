@@ -14,6 +14,26 @@ class wheel
       numberOfwheel = numbwheel;   
     }
 };
+
+class engine
+{
+    public:
+     string  enginetyp;
+    engine(string  eng)
+    {
+      enginetyp = eng;   
+    }   
+};
+
+class body
+{
+    public:
+     string  bdy;
+    body(string  bdyOftrck)
+    {
+      bdy = bdyOftrck;   
+    }   
+};
 /* Product which you want to create , lasrge object  */
 class truck
 {
@@ -46,14 +66,14 @@ class SmallTruck : public truckBuilder
 
         string getEngine()
         {
-            
-            return " 4 strock engine";
+             engine* eObj = new engine("4 strock engine");
+            return eObj->enginetyp;
         }
 
         string getBody()
         {
-
-            return "fiber body";
+             body* bObj = new body("Fiber body ");
+            return bObj->bdy;
         }
 };
 
@@ -68,16 +88,16 @@ class bigTruck : public truckBuilder
             return wObj->numberOfwheel;
         }
 
+
         string getEngine()
         {
-            
-            return "6 strock engine";
+             engine* eObj = new engine("4 strock engine");
+            return eObj->enginetyp;
         }
-
         string getBody()
         {
-            
-            return "iron and fiber body";
+             body* bObj = new body("Fiber body and iron ");
+            return bObj->bdy;
         }
 };
 
