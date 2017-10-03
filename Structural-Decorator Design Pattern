@@ -1,0 +1,135 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+/*Base component class*/
+class pizza
+{
+public:
+    /* it is virtual because when we delete the  base( Pizza) class pointer , then it will call destructor 
+       of pizza not derived class */
+    virtual ~pizza() 
+    { cout<<"In Pizza - Destructor"; }
+    
+    virtual double getCost()=0;
+    virtual std::string getRecipe()=0;
+    
+};
+
+class plainPizza : public pizza
+{
+   private:
+    std::string recipe;
+   public:
+    plainPizza()
+    {
+        cout<<"plain Pizza Constructor"<<endl;
+    }
+      
+   double getCost()
+   {
+       return 10.0;
+   }
+   
+   string getRecipe()
+   {
+       recipe = "Add Bread , Add Some Olive Oil , Add some salt , Onion , campsicum ";
+       return recipe;
+   }
+   
+   
+};
+/* This is decorator Class,  because it contains object of pizza classs,also  here we will add some
+   extra things in plainpizza  that is paneer , notice here we are using same function which is in 
+   plainPizza  */
+class PaneerPizzaDecorator : public pizza
+{  
+   private:
+   pizza *pizzaObjInDec;
+   std::string paneer;
+   public:
+    
+    /* here we are gettting object of pizza class sothat  we can use function of plianPizza class */
+    PaneerPizzaDecorator( pizza *pizzaObj )
+    {
+        cout<<"Inside PaneerPizzaDecorator constructor "<<endl;
+        pizzaObjInDec = pizzaObj;
+    }
+      
+   double getCost()
+   {
+       /* here we are calling plainPizza getCost function plus 13.0*/
+       return pizzaObjInDec->getCost() + 13.0;
+   }
+   
+   string getRecipe()
+   {
+      
+       
+       paneer = ", Add Paneer";
+       std::string recipe;
+        /* here we are calling plainPizza getRecipe function plus Add Paneer*/
+        recipe.append(paneer);
+        recipe.append(pizzaObjInDec->getRecipe());
+       return recipe;
+   }
+   ~PaneerPizzaDecorator()
+   {
+       delete pizzaObjInDec;
+   }
+   
+};
+
+
+/* Now here it is decorator of decorator , object of plainPizza + object of paneerPizza + on top of this
+   we are adding cheez*/
+class PaneerCheezPizzaDecorator : public pizza
+{  
+   private:
+   pizza *pizzaCheezObjInDec;
+   std::string cheez;
+   double discount;
+   public:
+    
+    /* here we are gettting object of pizza class sothat  we can use function of plianPizza class */
+    PaneerCheezPizzaDecorator( pizza *pizzaObj )
+    {
+        discount = 5.0;
+        cout<<"Inside PaneerPizzaDecorator constructor "<<endl;
+        pizzaCheezObjInDec = pizzaObj;
+    }
+      
+   double getCost()
+   {
+       /* here we are calling plainPizza getCost function plus 13.0*/
+       return pizzaCheezObjInDec->getCost() - discount;
+   }
+   
+   string getRecipe()
+   {
+      
+       
+       cheez = ", Add Cheez";
+       std::string recipe;
+        /* here we are calling plainPizza getRecipe function plus Add Paneer*/
+        recipe.append(cheez);
+        recipe.append(pizzaCheezObjInDec->getRecipe());
+       return recipe;
+   }
+   
+   ~PaneerCheezPizzaDecorator()
+   {
+       delete pizzaCheezObjInDec;
+   }
+   
+};
+int main() {
+
+   pizza *plnObj = new plainPizza();
+   pizza *pizzaObj = new PaneerPizzaDecorator(plnObj);
+   
+   //delete pizzaObj;
+    //pizzaObj->getCost();
+                cout<<"Cost of plain Pizza = "<<pizzaObj->getCost()<<endl;
+}
