@@ -1,0 +1,62 @@
+// CPP program to demonstrate 
+// Decorator pattern
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Concrete Component 
+class BaseMilkShake 
+{
+public:
+
+	float price()
+	{
+		return 30;
+	}
+};
+
+
+class MangoMilkShake:public BaseMilkShake
+{   
+    public:
+    float baseprice;
+    
+    MangoMilkShake()
+    {
+        baseprice = BaseMilkShake::price();
+    }
+    float price()
+	{
+	    cout<<"baseprice :"<<baseprice<<endl;
+		return 40 + baseprice ;
+	}
+};
+
+
+class VanilaMilkShake:public BaseMilkShake
+{   
+    public:
+    float baseprice;
+    
+    VanilaMilkShake()
+    {
+        baseprice = BaseMilkShake::price();
+    }
+    float price()
+	{
+	    cout<<"baseprice :"<<baseprice<<endl;
+		return 50 + baseprice ;
+	}
+};
+int main()
+{
+
+MangoMilkShake mObj;
+
+
+cout<<"price of mango : "<<mObj.price()<<endl;
+VanilaMilkShake VObj;
+cout<<"price of Vanilla : "<<VObj.price()<<endl;
+
+return 0;
+} 
