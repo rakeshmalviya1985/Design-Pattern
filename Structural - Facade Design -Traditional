@@ -1,0 +1,60 @@
+class Engine
+{
+
+public:
+    void injectFuel() 
+    {
+        cout<<"Fuel Injecting "<<endl; 
+        
+    }
+    
+    void igniteFuel()
+    {
+        cout<<"Fuel igniteFueling"<<endl; 
+    }
+
+};
+class Headlights
+{
+
+public:
+    void TurnOn() 
+    { 
+        cout<<"Turned on Headlights"<<endl; 
+        
+    }
+
+};
+
+class ChangeGearOfCar
+{
+  public:
+  void ChangeGear()
+  {
+      cout<<"Gear Changed"<<endl;
+  }
+};
+class accelerate
+{
+  public:
+  void PressAccelerate()
+  {
+      cout<<"Accelerating "<<endl;
+  }
+};
+int main()
+{
+   
+   cout << "Main" << endl; 
+   Engine eng;
+   eng.injectFuel();
+   eng.igniteFuel();
+   Headlights hd;
+   hd.TurnOn();
+   ChangeGearOfCar gear;
+   gear.ChangeGear();
+   accelerate acc;
+   acc.PressAccelerate();
+   
+   return 0;
+}
