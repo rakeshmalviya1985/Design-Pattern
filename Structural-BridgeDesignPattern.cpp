@@ -16,12 +16,12 @@ class fillColorImp
     
 };
 
-class blueColor : public fillColorImp
+class greenColor : public fillColorImp
 {
    public:
    void fillColor()
    {
-      cout<<"Its is blue color"<<endl;
+      cout<<"Its is Green color"<<endl;
    }
     
 };
@@ -54,7 +54,7 @@ class bridge : public Shape
 
    bridge(fillColorImp* obj)
     {
-        cout<<"inside cons"<<endl;
+        cout<<"\ninside consstructor of bridge class\n"<<endl;
        colorObj1 = obj; 
        
     }
@@ -79,16 +79,53 @@ class squar : public bridge
    
 };
 
+class Rectangle : public bridge
+{
+   public:
+   
+    Rectangle(fillColorImp* obj):bridge(obj) {}
+
+    void colorIt()
+   {
+     colorObj1->fillColor();
+   }
+   
+   void drawIt()
+   {
+       cout<<"Squar drawan without color"<<endl;
+   }
+   
+   
+};
+
 int main() {
     
-
-    fillColorImp *fillcolorImpObj = new  redColor;
-    
-    Shape *shapeobj1 = new squar(fillcolorImpObj);
+    Shape *shapeobj1;
+    fillColorImp *ObjRed = new  redColor;
+    fillColorImp *ObjGreen = new  greenColor;
+    //UseCase1
+    cout<<"\nUsecase1"<<endl;
+    cout<<"------------------------------------"<<endl;
+    shapeobj1 = new squar(ObjRed);
     
     shapeobj1->colorIt();
     shapeobj1->drawIt();
-   
+    shapeobj1 = new squar(ObjGreen);
+    
+    shapeobj1->colorIt();
+    shapeobj1->drawIt();   
+    //UseCase1
+    cout<<"\nUsecase2 "<<endl;
+    cout<<"------------------------------------"<<endl;
+
+    shapeobj1 = new Rectangle(ObjRed);
+    
+    shapeobj1->colorIt();
+    shapeobj1->drawIt();
+    shapeobj1 = new Rectangle(ObjGreen);
+    
+    shapeobj1->colorIt();
+    shapeobj1->drawIt();   
     
     return 0;
 
