@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <string>
 using namespace std;
@@ -54,7 +53,7 @@ class PaneerPizzaDecorator : public pizza
     /* here we are gettting object of pizza class sothat  we can use function of plianPizza class */
     PaneerPizzaDecorator( pizza *pizzaObj )
     {
-        cout<<"Inside PaneerPizzaPapperDecorator constructor "<<endl;
+        cout<<"Inside PaneerPizzaDecorator constructor "<<endl;
         pizzaObjInDec = pizzaObj;
     }
       
@@ -90,21 +89,21 @@ class PaneerCheezPizzaDecorator : public pizza
    private:
    pizza *pizzaCheezObjInDec;
    std::string cheez;
-   double discount;
+   double cheezChrge;
    public:
     
     /* here we are gettting object of pizza class sothat  we can use function of plianPizza class */
     PaneerCheezPizzaDecorator( pizza *pizzaObj )
     {
-        discount = 5.0;
-        cout<<"Inside PaneerPizzaDecorator constructor "<<endl;
+        cheezChrge = 5.0;
+        cout<<"Inside PaneerCheezPizzaDecorator constructor "<<endl;
         pizzaCheezObjInDec = pizzaObj;
     }
       
    double getCost()
    {
        /* here we are calling plainPizza getCost function plus 13.0*/
-       return pizzaCheezObjInDec->getCost() - discount;
+       return pizzaCheezObjInDec->getCost() + cheezChrge;
    }
    
    string getRecipe()
@@ -127,10 +126,14 @@ class PaneerCheezPizzaDecorator : public pizza
 };
 int main() {
 
-   pizza *plnObj = new plainPizza();
-   pizza *pizzaObj = new PaneerPizzaDecorator(plnObj);
+  pizza *plnObj = new plainPizza();
+   pizza *paneerObj = new PaneerPizzaDecorator(plnObj);
+   
+  pizza *CheezObj = new PaneerCheezPizzaDecorator(paneerObj);
    
    //delete pizzaObj;
     //pizzaObj->getCost();
-                cout<<"Cost of plain Pizza = "<<pizzaObj->getCost()<<endl;
+    cout<<"Cost of paneer cheez Pizza = "<<plnObj->getCost()<<endl;
+    cout<<"Cost of paneer cheez Pizza = "<<paneerObj->getCost()<<endl;
+    cout<<"Cost of paneer cheez Pizza = "<<CheezObj->getCost()<<endl;
 }
