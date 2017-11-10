@@ -43,7 +43,7 @@ class plainPizza : public pizza
 /* This is decorator Class,  because it contains object of pizza classs,also  here we will add some
    extra things in plainpizza  that is paneer , notice here we are using same function which is in 
    plainPizza  */
-class PaneerPizzaPapperDecorator : public pizza
+class PaneerPizzaDecorator : public pizza
 {  
    private:
    pizza *pizzaObjInDec;
