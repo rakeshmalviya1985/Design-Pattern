@@ -43,17 +43,18 @@ class plainPizza : public pizza
 /* This is decorator Class,  because it contains object of pizza classs,also  here we will add some
    extra things in plainpizza  that is paneer , notice here we are using same function which is in 
    plainPizza  */
-class PaneerPizzaDecorator : public pizza
+class PaneerPizzaPapperDecorator : public pizza
 {  
    private:
    pizza *pizzaObjInDec;
    std::string paneer;
+   
    public:
     
     /* here we are gettting object of pizza class sothat  we can use function of plianPizza class */
     PaneerPizzaDecorator( pizza *pizzaObj )
     {
-        cout<<"Inside PaneerPizzaDecorator constructor "<<endl;
+        cout<<"Inside PaneerPizzaPapperDecorator constructor "<<endl;
         pizzaObjInDec = pizzaObj;
     }
       
