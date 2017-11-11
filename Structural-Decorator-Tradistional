@@ -5,7 +5,7 @@
 using namespace std;
 
 // Concrete Component 
-class BaseMilkShake 
+class PlanPizza 
 {
 public:
 
@@ -16,14 +16,14 @@ public:
 };
 
 
-class MangoMilkShake:public BaseMilkShake
+class paneerPizza:public PlanPizza
 {   
     public:
     float baseprice;
     
-    MangoMilkShake()
+    paneerPizza()
     {
-        baseprice = BaseMilkShake::price();
+        baseprice = PlanPizza::price();
     }
     float price()
 	{
@@ -33,14 +33,14 @@ class MangoMilkShake:public BaseMilkShake
 };
 
 
-class VanilaMilkShake:public BaseMilkShake
+class paneerCheezPizza:public PlanPizza
 {   
     public:
     float baseprice;
     
-    VanilaMilkShake()
+    paneerCheezPizza()
     {
-        baseprice = BaseMilkShake::price();
+        baseprice = PlanPizza::price();
     }
     float price()
 	{
@@ -51,12 +51,12 @@ class VanilaMilkShake:public BaseMilkShake
 int main()
 {
 
-MangoMilkShake mObj;
+paneerPizza mObj;
 
 
 cout<<"price of mango : "<<mObj.price()<<endl;
-VanilaMilkShake VObj;
+paneerCheezPizza VObj;
 cout<<"price of Vanilla : "<<VObj.price()<<endl;
 
 return 0;
-} 
+}
