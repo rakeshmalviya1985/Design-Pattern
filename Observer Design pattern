@@ -1,0 +1,146 @@
+
+
+Skip to content
+Using Gmail with screen readers
+label:knowledge-base 
+
+3 of 11
+ALL design pattern
+Knowledge Base
+x
+
+EqualConnect Coach <rakeshchannel17@gmail.com>
+Attachments
+Tue, Nov 12, 2019, 10:18 PM
+to me
+
+
+6 Attachments
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <list>
+#include <algorithm>
+
+using namespace std;
+
+class IObserver
+{
+public:
+    virtual void newUpdateShow(float price) = 0;
+};
+
+
+class Shop :public IObserver
+{
+    std::string name;
+    float price;
+public:
+    Shop(std::string name)
+    {
+        this->name = name;
+    }
+
+    void newUpdateShow(float price)
+    {
+        this->price = price;
+        std::cout << "Price at "<< name << " is now "<< price << "\n";
+    }
+};
+class ShopOperationSubject
+{
+    /*Lets keep a keep List of shop which you want to update whenever some update come */
+
+    std::vector<Shop*> list;
+
+    std::vector<Shop*>::iterator itr;
+public:
+      void subscribeInfo(Shop *shop)
+      {
+          list.push_back(shop);
+      }
+      void unSubscribeInfo(Shop *shop)
+      {
+        /*Removing is done by shifting (by means of move assignment) the elements in the range
+ *        in such a way that the elements that are not to be removed appear in the beginning of the range.
+ *        removable  elements that remain is preserved in vector and it will shift to last of vector but
+ *        remove will return new end of vector in which removable element will not be there
+ *        so in short remove will define new begining and end of vector , it will not actual delete
+ *        element from vector  and the physical size of the container
+ *        is unchanged andi now  erase's begining is end of remove and end will be  actual end of vector */
+         list.erase(std::remove(list.begin(), list.end(), shop), list.end());
+      }
+
+      void notifyInfo(float price)
+      {
+          for(vector<Shop*>::const_iterator iter = list.begin(); iter != list.end(); ++iter)
+          {
+              if(*iter != 0)
+              {
+                  (*iter)->newUpdateShow(price);
+              }
+          }
+      }
+};
+
+class UpdateProductInfo : public ShopOperationSubject
+{
+public:
+     void ChangePrice(float price)
+     {
+         notifyInfo(price);
+     }
+};
+
+int main()
+{
+    cout<<"Hello World" <<endl;
+
+    UpdateProductInfo product;
+
+
+    Shop shop1("Shop 1");
+    Shop shop2("Shop 2");
+
+    product.subscribeInfo(&shop1);
+    product.subscribeInfo(&shop2);
+
+    product.ChangePrice(10);
+
+    product.unSubscribeInfo(&shop2);
+
+    cout<<"Now shop2 has unsubscribed "<<endl;
+
+    product.ChangePrice(20);
+
+    return 0;
+}
+
+
+Definition :
+The  Observer  Pattern  defines  a  one  to  many  dependency(relationship)  between  objects  so  that  one  object  changes  it's  state, 
+ all  of  its  dependents  are  get   notified  and  updated  automatically.
+
+Advantage : 
+1)  There  is  no  need  to  modify  Subject  to  add  or  remove  observers.
+2) It  provides  the   broadcast  type communication  feature.
+3) It  provide  the  decoupling  between  subject  and  observers
+
+When to use :
+When  one  object's  state  changes  and   must  be  reflected  in  another  
+ object  without  keeping  the  objects  tight  coupled. 
+Real time  example : 
+1)  Mobile  Application  notification  system  in  which  whenever  new  update  
+    comes  user  will  get  notification
+2)  In  Website's  in  which  notification  triggers  in  case  subscription/follow  
+    like  youtube/facebook/qoura  etc
+
+/*It supports the principle of loose coupling between objects that interact with each other
+It allows sending data to other objects effectively without any change in the Subject or Observer classes
+Observers can be added/removed at any point in time
+
+If not correctly implemented, the Observer can add complexity and lead to inadvertent performance issues. */
+
+Program.txt
+Displaying Program.txt.
