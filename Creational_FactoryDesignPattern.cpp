@@ -35,7 +35,7 @@ class factory
 {
     private:
     enum cakeType TypeOfCake;
-    Cake* obj;
+    static Cake* obj;
     public:
      
     factory()
@@ -43,7 +43,7 @@ class factory
        cout<<"Const : "<<endl;
     }
 
-    Cake* getIns(cakeType type)
+    static Cake* getIns(cakeType type)
     {
            if(type == choc)
            {
@@ -58,12 +58,13 @@ class factory
     }
 };
 
+Cake* factory::obj = nullptr;
 /* Client */
 int main() 
 {
 
-factory Fobj;
-Cake* Cobj = Fobj.getIns(vanila);
+
+Cake* Cobj = factory::getIns(vanila);
 
 Cobj->recipe();
 
