@@ -1,22 +1,4 @@
 
-
-Skip to content
-Using Gmail with screen readers
-label:knowledge-base 
-
-3 of 11
-ALL design pattern
-Knowledge Base
-x
-
-EqualConnect Coach <rakeshchannel17@gmail.com>
-Attachments
-Tue, Nov 12, 2019, 10:18 PM
-to me
-
-
-6 Attachments
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -118,7 +100,7 @@ int main()
 }
 
 
-Definition :
+/*Definition :
 The  Observer  Pattern  defines  a  one  to  many  dependency(relationship)  between  objects  so  that  one  object  changes  it's  state, 
  all  of  its  dependents  are  get   notified  and  updated  automatically.
 
@@ -136,11 +118,10 @@ Real time  example :
 2)  In  Website's  in  which  notification  triggers  in  case  subscription/follow  
     like  youtube/facebook/qoura  etc
 
-/*It supports the principle of loose coupling between objects that interact with each other
+it supports the principle of loose coupling between objects that interact with each other
 It allows sending data to other objects effectively without any change in the Subject or Observer classes
 Observers can be added/removed at any point in time
 
-If not correctly implemented, the Observer can add complexity and lead to inadvertent performance issues. */
+If not correctly implemented, the Observer can add complexity and lead to inadvertent performance issues. 
 
-Program.txt
-Displaying Program.txt.
+*/
