@@ -1,4 +1,8 @@
 #include <iostream>
+#include <thread>         // std::thread
+#include <mutex>          // std::mutex, std::lock_guard
+
+std::mutex mtx;
 
 using namespace std;
 class MySingleton 
@@ -10,14 +14,15 @@ private:
              i = 10;
             cout<<"Singleton constructor"<<endl;
         }
-        MySingleton(const Singleton&) = delete;
-        MySingleton& operator=(const Singleton&) = delete;
+        MySingleton(const MySingleton&) = delete;
+        MySingleton& operator=(const MySingleton&) = delete;
         static MySingleton* ptr;    
     
 public:
          int i;
          /* it is static because there is no object available at client side and only one copy of
          object we want to maintain*/
+         //std::lock_guard<std::mutex> lck(mtx);
          static MySingleton* getInstance()
          {
              if(ptr == NULL)
@@ -37,7 +42,7 @@ public:
 
 };
 
- MySingleton* MySingleton::ptr = 0;    
+ MySingleton* MySingleton::ptr = nullptr;    
     
 
 /* We have to initialize  static member outside of class */
