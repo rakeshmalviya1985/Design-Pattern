@@ -10,7 +10,9 @@ private:
              i = 10;
             cout<<"Singleton constructor"<<endl;
         }
-static MySingleton* ptr;    
+        Singleton(const Singleton&) = delete;
+        Singleton& operator=(const Singleton&) = delete;
+        static MySingleton* ptr;    
     
 public:
          int i;
