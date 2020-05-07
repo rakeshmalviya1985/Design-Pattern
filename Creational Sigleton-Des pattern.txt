@@ -28,6 +28,12 @@ public:
              return ptr;
          }
          
+         ~MySingleton()
+          {
+              delete ptr;
+          }
+             
+         
 
 };
 
