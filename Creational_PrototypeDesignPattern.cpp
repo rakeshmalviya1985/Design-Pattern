@@ -3,6 +3,11 @@
 /* As per my understanding we can achive same functionality using copy constructor 
 The prototype design pattern is a design pattern that is used to instantiate a class by copying, or cloning, the properties 
 of an existing object. The new object is an exact copy of the prototype but permits modification without altering the original.*/
+/*------------------------------------------------------------------------------------------------------
+ *
+ *  Explaination of following program you can find on youtube, Channel Name : equalconnect Coach
+ *
+-------------------------------------------------------------------------------------------------------*/
 #include <iostream>
 
 using namespace std;
