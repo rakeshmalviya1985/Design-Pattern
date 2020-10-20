@@ -1,0 +1,55 @@
+//Explaination of following program you can find on youtube, Channel Name : equalconnect Coach
+#include <iostream>
+
+using namespace std;
+class shape
+{
+  public:
+  
+  virtual void draw() = 0;
+  
+};
+
+class basicShape : public shape
+{
+   public:
+   void draw(){ cout<<" I am in basic shape";}
+};
+
+class decorator:public shape
+{
+    private :
+    
+    shape *bsPtr;
+    public:
+    decorator(shape *bptr):bsPtr(bptr){}
+    
+    void draw()
+    {
+        bsPtr->draw();
+    }
+    
+};
+
+class decoratedBasicShape: public decorator
+{
+    public:
+    decoratedBasicShape(shape* component) : decorator(component) {     }
+    void draw()  override {decorator::draw(); cout<<", decorator : Putting additional functionality decoratedBasicShape";  }
+    
+};
+
+class decoratedBasicShape_1: public decorator
+{
+    public:
+    decoratedBasicShape_1(shape* component) : decorator(component) {     }
+    void draw()  override {decorator::draw(); cout<<", decorator : Putting additional functionality decoratedBasicShape_1";  }
+    
+};
+int main()
+{
+    basicShape *basicPtr = new basicShape();
+    shape *decBShape = new decoratedBasicShape(basicPtr);
+    decBShape->draw();
+    return 0;
+}
