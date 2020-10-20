@@ -1,4 +1,14 @@
-//Explaination of following program you can find on youtube, Channel Name : equalconnect Coach
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ *  Explaination of following program you can find on youtube, Channel Name : equalconnect Coach
+ ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+ 
+ /*------------------------------------------------------------------------------------------------------
+  *Theory : when you wanted to enhance existing interface and concreate class function at the run time whichout
+  * affecting existing implementation , in order words what i can say is whenever you wanted to add addition 
+  * resposibility then you can go with decorator design pattern;
+  * Adapter provides a different interface to its subject. Proxy provides the same interface. Decorator 
+  * provides an enhanced interface.
+-------------------------------------------------------------------------------------------------------*/
 #include <iostream>
 
 using namespace std;
