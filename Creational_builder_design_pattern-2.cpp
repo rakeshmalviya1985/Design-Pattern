@@ -1,3 +1,9 @@
+/*------------------------------------------------------------------------------------------------------
+ *
+ *  Explaination of following program you can find on youtube, Channel Name : equalconnect Coach
+ *
+-------------------------------------------------------------------------------------------------------*/
+
 #include <iostream>
 #include <string>
 
