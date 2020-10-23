@@ -1,0 +1,83 @@
+/*******************************************************************
+*  find more detail on youtube @equalconnect Coach
+*  following design solve the problem of cloning the object,
+*  imaging u have some dynamic memory allocation in ur class and 
+*  u have one abstract class (interface) and below that we have lot 
+*  concrete class are there and in concrete class u have dynamic memory
+*  allocation.now some third class u need receive all these class object 
+*  u need to call the function of the same 
+*  input : {2,1,4,3,5,6};
+*  output: {1,2,3,4,5,6 } 
+*  time complexity : O(logn) , space Complexity : O(1)
+********************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+class shape
+{
+public:
+    virtual shape* myclon() = 0;
+    virtual int getPtr() = 0;
+};
+
+class basicShape:public shape
+{
+  private:
+    int *ptr;
+  public:
+  basicShape(){}
+ 
+  basicShape(int i){ ptr = new int(); *ptr = i;}
+  
+ basicShape(const basicShape &obj)
+  {
+      ptr = new int();
+     *ptr = *(obj.ptr);
+      
+  }
+ 
+ friend ostream & operator<<(ostream &out , basicShape &obj1) 
+ {
+     cout<<"i am in \n";
+     int tmp = obj1.getPtr();
+     
+     out<<"Value : "<<tmp<<" address : "<<&tmp;
+     
+ }
+ 
+ basicShape* myclon()
+ {
+     basicShape *tmpPtr = new basicShape(*this);
+            
+     return tmpPtr;
+ }
+ 
+int getPtr()
+{
+     return *ptr;
+}
+  
+  ~basicShape()
+   {
+       delete ptr;
+   }
+};
+
+    
+void fun(shape &xyz)
+{
+    shape& abc =  *(xyz.myclon());
+               
+     cout<<" getptr :"<<abc.getPtr();
+}
+
+
+    
+int main()
+{
+  shap *obj = new basicShape(10);
+   fun(obj);
+   return 0;
+}
