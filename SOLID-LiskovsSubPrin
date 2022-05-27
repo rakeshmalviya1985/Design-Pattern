@@ -1,0 +1,47 @@
+#include <iostream>
+
+using namespace std;
+
+class FileUpload
+{
+private:
+    /* data */
+public:
+
+virtual void Upload() = 0;
+
+};
+
+class UploadMp3File
+{
+private:
+    /* data */
+public:
+       UploadMp3File(/* args */) { }
+       void Upload() {
+           cout<<" I am uploading Mp3file";
+       }
+       ~UploadMp3File() {}
+};
+
+
+
+class ClientInterface
+{
+    private:
+
+    public:
+    ClientInterface(FileUpload &ptr){ cout<<"I am uploading file";}
+   // ClientInterface(UploadMp3File &ptr){ cout<<"I am uploading file";} Wrong its depends UploadMp3File class so we can't change anything in UploadMp3File 
+    ~ClientInterface(){}
+
+};
+
+
+
+
+int main()
+{
+    return 0;
+}
+
