@@ -1,0 +1,73 @@
+#include <iostream>
+
+using namespace std;
+
+// Interface is not mandatory for 
+
+class Subsystem1  {
+ public:
+  std::string Operation1() const {
+    return "Subsystem1: Ready!\n";
+  }
+
+  std::string OperationN() const  {
+    return "Subsystem1: Go!\n";
+  }
+};
+
+
+class Subsystem2   {
+ public:
+  std::string Operation1()  const {
+    return "Subsystem2: Get ready!\n";
+  }
+
+  std::string OperationZ() const {
+    return "Subsystem2: Fire!\n";
+  }
+};
+
+/**
+ * The Facade class provides a simple interface to the complex logic of one or
+ * several subsystems.
+ */
+class Facade {
+ protected:
+  Subsystem1 *subsystem1_;
+  Subsystem2 *subsystem2_;
+
+ public:
+  /**
+   * In this case we will delegate the memory ownership to Facade Class
+   */
+  Facade(
+      Subsystem1 *subsystem1 = nullptr,
+      Subsystem2 *subsystem2 = nullptr) {
+    this->subsystem1_ = subsystem1 ?: new Subsystem1();
+    this->subsystem2_ = subsystem2 ?: new Subsystem2();
+  }
+  ~Facade() {
+    delete subsystem1_;
+    delete subsystem2_;
+  }
+
+  std::string Operation() {
+    std::string result = "Facade initializes subsystems:\n";
+    result += this->subsystem1_->Operation1();
+    result += this->subsystem2_->Operation1();
+    return result;
+  }
+};
+
+
+
+int main() {
+  Subsystem1 *subsystem1 = new Subsystem1();
+  Subsystem2 *subsystem2 = new Subsystem2();
+  Facade *facade = new Facade(subsystem1, subsystem2);
+  cout<<facade->Operation();
+
+  delete facade;
+
+  return 0;
+}
